@@ -1,0 +1,9 @@
+<!-- Local Reference
+<label for="name">Name: </label>
+<input type="text" id="name" #personNameEl>
+<button (click)="onCreatePerson(personNameEl.value)">Create</button> -->
+
+<!-- Two Way Binding -->
+<label for="name">Name: </label>
+<input type="text" id="name" [(ngModel)]="enteredPersonName">     <!-- Two Way Binding [()] with ngModel needs to be imported in app.module.ts as FormsModule -->
+<button (click)="onCreatePerson()">Create</button>                <!-- Event Binding with () -->
