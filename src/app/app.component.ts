@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-refresher';
-
-  persons: string[] = ['Peter', 'Paul', 'Anna'];
-
-  onPersonCreated(name: string) {                   // passing data with custom events
-    this.persons.push(name);
-  }
 }
