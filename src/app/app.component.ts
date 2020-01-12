@@ -10,7 +10,7 @@ export class AppComponent {
 
   persons: string[] = ['Peter', 'Paul', 'Anna'];
 
-  onPersonCreated(name: string) {
+  onPersonCreated(name: string) {                   // passing data with custom events
     this.persons.push(name);
   }
 }
