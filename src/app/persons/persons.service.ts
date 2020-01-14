@@ -1,12 +1,31 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'                                          // service object is everywhere the same object!
 })
 export class PersonsService {
   personsChanged = new Subject<string[]>();                   // Observable
-  persons: string[] = ['Peter', 'Paul', 'Anna'];
+  persons: string[] = [];
+
+  constructor(private http: HttpClient) {
+
+  }
+
+  fetchPersons() {
+    this.http
+    .get<any>('https://swapi.co/api/people')
+    .pipe(
+      map(responseData => {
+        return responseData.results.map(character => character.name);
+      })
+    )
+    .subscribe(transformedData => {
+      this.personsChanged.next(transformedData);
+    });
+  }
 
   addPerson(name: string) {
     this.persons.push(name);
