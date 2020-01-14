@@ -17,4 +17,8 @@ export class PersonsComponent implements OnInit {             // https://angular
   ngOnInit() {
     this.personList = this.prsService.persons;
   }
+
+  onRemovePerson(personName: string) {
+    this.prsService.removePerson(personName);
+  }
 }
