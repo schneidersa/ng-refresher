@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 })
 export class PersonsComponent implements OnInit, OnDestroy {                            // OnInit - https://angular.io/guide/lifecycle-hooks
   personList: string[];
+  isFetching = false;
   private personListSubscribe: Subscription;
   // private personsService: PersonsService;
 
@@ -19,7 +20,9 @@ export class PersonsComponent implements OnInit, OnDestroy {                    
   ngOnInit() {
     this.personListSubscribe = this.prsService.personsChanged.subscribe(persons => {    // subscribe to list of personsChanged
       this.personList = persons;
+      this.isFetching = false;
     });
+    this.isFetching = true;
     this.prsService.fetchPersons();
   }
 
